@@ -1,0 +1,113 @@
+#:kivy 1.0.9
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+ScreenManager:
+    transition: FadeTransition()
+    Menu:
+    Level1:
+    Level2:
+
+<Przeszkoda>:
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: 1400, 450
+
+<Electron>:
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: 30, 30
+
+<Menu>:
+    name: "main"
+
+    Label:
+        font_size: 70
+        center_x: self.width / 2 - 20
+        top: 1.5 * self.height - 100
+        text: str(root.nazwaGry)
+
+    Label:
+        font_size: 20
+        center_x: self.width / 2 - 20
+        top: (self.height / 1.5) - 100
+        text: str(root.opis)
+
+    Button:
+        on_release: app.root.current = "level1"
+        text: str(root.start)
+        size_hint: 0.3, 0.2
+        font_size: 25
+        top: root.height/2
+        center_x: root.width/2 - 100
+
+<Level1>:
+    name: "level1"
+    electron: id_electron
+    button1: id_button1
+    przeszkoda: id_przeszkoda
+    reset: id_reset
+
+    Przeszkoda:
+        id: id_przeszkoda
+        x:0
+        y:300
+
+    Electron:
+        id: id_electron
+        x: 0
+        y: 200
+
+    Button:
+        id: id_button1
+        size_hint: 1.5, 0.4
+        font_size: 25
+        top: 0
+        x: 0
+
+    Button:
+        on_release: app.root.current = "level2"
+        text: str(root.nextLevel)
+        size_hint: 0.1, 0.1
+        font_size: 25
+        top: root.height/4 - 80
+        x: root.width - 150
+
+    Button:
+        id: id_reset
+        text: str(root.restart)
+        size_hint: 0.1, 0.1
+        font_size: 25
+        top: root.height/4 - 80
+        x: 0
+
+    Label:
+        color: (0,0,0,1)
+        font_size: 70
+        center_x: self.width / 2 - 20
+        top: 1.5 * self.height - 100
+        text: str(root.level1)
+
+    Label:
+        font_size: 20
+        center_x: self.width / 2 - 20
+        top: (self.height / 1.5) - 100
+        text: str(root.opis1)
+
+
+<Level2>:
+    name:"level2"
+
+    Label:
+        font_size: 100
+        center_x: self.width / 2 - 20
+        top: 1.5 * self.height - 100
+        text: str(root.autor)
+
+    Label:
+        color: (0,1,1,1)
+        font_size: 70
+        center_x: self.center_x
+        top: self.height
+        text: str(root.dopiska)
